@@ -13,8 +13,8 @@ app.use(
   cors({
     origin: [
       "http://localhost:3000", // Your frontend URL
-      "https://proposal-ai-backend.onrender.com",
-      "proposal-ai-backend.onrender.com", // Example frontend on Render
+      "https://extraordinary-mermaid-0b649b.netlify.app",
+      "extraordinary-mermaid-0b649b.netlify.app", // Example frontend on Render
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
@@ -25,6 +25,10 @@ app.use(express.json());
 
 // Routes
 app.use("/api/proposals", require("./routes/proposalRoutes"));
+
+app.get("/", (req, res) => {
+  res.send("Hello World");
+});
 
 const PORT = process.env.PORT || 5000;
 
