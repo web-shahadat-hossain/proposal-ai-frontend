@@ -9,7 +9,18 @@ const app = express();
 connectDB();
 
 // Middleware
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:3000", // Your frontend URL
+      "https://proposal-ai-backend.onrender.com",
+      "proposal-ai-backend.onrender.com", // Example frontend on Render
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 // Routes
