@@ -27,7 +27,7 @@ app.use(express.json());
 app.use("/api/proposals", require("./routes/proposalRoutes"));
 
 app.get("/", (req, res) => {
-  res.send("Hello World");
+  res.send("proposal ai");
 });
 
 const PORT = process.env.PORT || 5000;
