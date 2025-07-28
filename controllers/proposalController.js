@@ -142,3 +142,33 @@ exports.getAllProposal = async (req, res) => {
     res.status(500).json({ message: "Error downloading proposal" });
   }
 };
+exports.deleteProposal = async (req, res) => {
+  try {
+    const proposal = await Proposal.findByIdAndDelete(req.params.id);
+
+    if (!proposal) {
+      return res.status(404).json({ message: "Proposal not found" });
+    }
+
+    res.status(200).json({
+      status: true,
+      data: proposal,
+    });
+  } catch (error) {
+    console.error("PDF Generation Error:", error);
+    res.status(500).json({
+      message: "Error generating PDF",
+      error: error.message,
+    });
+  }
+};
+
+exports.getAllProposal = async (req, res) => {
+  try {
+    const proposals = await Proposal.find().sort({ createdAt: -1 });
+    res.json(proposals);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error downloading proposal" });
+  }
+};
